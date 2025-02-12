@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Boxicons CSS -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <!-- Boxicons JS: ¡IMPORTANTE para que se muestren los <box-icon>! -->
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <!-- Estilos -->
+  <link rel="stylesheet" href="./src/css/styles.css">
+  <!-- Script principal -->
+  <script type="module" src="./src/js/scripts.js" defer></script>
+  <title>Proyecto - Reproductor de Música</title>
+</head>
+
+<body>
+  <div class="app-container">
+    <div class="sidebar">
+      <div class="window-controls">
+        <div class="control-dot close-button"></div>
+        <div id="editUser" class="control-dot"></div>
+        <div id="addUser" class="control-dot"></div>
+      </div>
+      <details class="filtros-container">
+        <summary>Filtros</summary>
+        <ul class="filtros-list">
+          <li class="active"><strong>Todas</strong></li>
+          <li><strong>Favoritas</strong></li>
+          <li><strong>Canciones Cortas</strong></li>
+          <li><strong>Canciones Largas</strong></li>
+        </ul>
+      </details>
+      <div class="currentMusic"></div>
+    </div>
+
+    <div class="main-content">
+      <div class="top-bar">
+        <div class="search-container">
+          <box-icon name="search-alt" color="#171717"></box-icon>
+          <input type="search" class="search-bar" placeholder="Buscar" id="search" name="search">
+          <h1>Music</h1>
+        </div>
+        <div class="user-controls">
+          <div id="user" style="font-weight: bold;">
+            <img id="imgUser" src="./src/images/perfil.png" alt="Usuario">
+            <span class="userMargin">Usuario</span>
+          </div>
+          <div>
+            <button class="pause-button">PAUSE</button>
+            <button id="add-button" class="add-button">
+              <box-icon name="add-to-queue" type="solid" color="#ffffff"></box-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="songs-header">
+          <span></span>
+          <span id="titleHeader">TÍTULO</span>
+          <span id="artistHeader">ARTISTA</span>
+          <span id="durationHeader">
+            <box-icon name="time-five" color="#a8a8a8"></box-icon>
+          </span>
+          <span></span>
+        </div>
+        <div class="scrollY"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="player">
+    <div class="player-content">
+      <div class="current-song">
+        <div class="song-info">
+          <div class="song-name">Canción actual</div>
+          <div class="artist-name">Artista</div>
+        </div>
+      </div>
+
+      <div class="center-controls">
+        <div class="player-controls">
+          <button class="control-button loop-button" id="loopButton">
+            <box-icon name="repeat" color="#ffffff"></box-icon>
+          </button>
+          <button class="control-button prev-button">
+            <box-icon name="skip-previous" color="#ffffff"></box-icon>
+          </button>
+          <button class="control-button play-button">
+            <box-icon id="play-button-control" name="play-circle" color="#ffffff"></box-icon>
+          </button>
+          <button class="control-button next-button">
+            <box-icon name="skip-next" color="#ffffff"></box-icon>
+          </button>
+          <button class="control-button random-button" id="shuffleButton">
+            <box-icon name="shuffle" color="#ffffff"></box-icon>
+          </button>
+        </div>
+        <div class="progress-container">
+          <span class="time current">0:00</span>
+          <progress class="progress-bar" value="0" max="100"></progress>
+          <span class="time total">0:00</span>
+        </div>
+      </div>
+
+      <div class="volume-controls">
+        <box-icon name="volume-low" type="solid" color="#ffffff"></box-icon>
+        <div class="volume-bar">
+          <div class="volume-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para subir canción -->
+  <div id="addMusicModal" class="modal">
+    <div class="modal-content">
+      <box-icon id="boton-close" name="x" color="#1db954"></box-icon>
+      <div class="modal-body">
+        <form id="addMusicForm">
+          <label for="musicFile">Seleccionar archivo de música</label>
+          <input type="file" id="musicFile" name="musicFile" accept="audio/mp3">
+          <label for="title">Título</label>
+          <input type="text" id="title" name="title" />
+          <label for="artist">Autor</label>
+          <input type="text" id="artist" name="artist" />
+          <label for="coverImage">Imagen de portada</label>
+          <input type="file" id="coverImage" name="coverImage" accept="image/png">
+          <button type="submit" class="pause-button">Subir</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para añadir usuario -->
+  <div id="addUserModal" class="modal">
+    <div class="modal-content">
+      <box-icon id="user-modal-close" name="x" color="#1db954"></box-icon>
+      <div class="modal-body">
+        <form id="addUserForm">
+          <label for="username">Nombre de usuario</label>
+          <input type="text" id="username" name="username" required />
+          <button type="submit" class="pause-button">Añadir Usuario</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para editar usuario -->
+  <div id="editUserModal" class="modal">
+    <div class="modal-content">
+      <box-icon id="user-modal-close" name="x" color="#1db954"></box-icon>
+      <h2>Editar Usuario</h2>
+      <form id="editUserForm">
+        <label for="userSelect">Selecciona un usuario:</label>
+        <select id="userSelect"></select>
+        <label for="newName">Nuevo nombre:</label>
+        <input type="text" id="newName">
+        <button type="submit">Confirmar</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

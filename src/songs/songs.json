@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Viitorul bas",
+    "artist": "Viitorul bas - Danza",
+    "cover": "./src/songs/cover1.png",
+    "filepath": "./src/songs/song1.mp3"
+  },
+  {
+    "id": 2,
+    "title": "Nhịp đập",
+    "artist": "Nhịp đập - VlogMúsicaDerrotar",
+    "cover": "./src/songs/cover2.png",
+    "filepath": "./src/songs/song2.mp3"
+  }
+]
