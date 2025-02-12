@@ -1,16 +1,37 @@
 [
   {
     "id": 1,
-    "title": "Viitorul bas",
-    "artist": "Viitorul bas - Danza",
+    "title": "Alone",
+    "artist": "BoDleasons",
     "cover": "./src/songs/cover1.png",
     "filepath": "./src/songs/song1.mp3"
   },
   {
     "id": 2,
-    "title": "Nhịp đập",
-    "artist": "Nhịp đập - VlogMúsicaDerrotar",
+    "title": "Vlog Music",
+    "artist": "MFCC",
     "cover": "./src/songs/cover2.png",
     "filepath": "./src/songs/song2.mp3"
+  },
+  {
+    "id": 3,
+    "title": "Spinning Head",
+    "artist": "Gvidon",
+    "cover": "./src/songs/cover3.png",
+    "filepath": "./src/songs/song3.mp3"
+  },
+  {
+    "id": 4,
+    "title": "Lost in Dreams",
+    "artist": "KulaKovka",
+    "cover": "./src/songs/cover4.png",
+    "filepath": "./src/songs/song4.mp3"
+  },
+  {
+    "id": 5,
+    "title": "Stylish Deep Electronic",
+    "artist": "RoyaltyFreeMusic",
+    "cover": "./src/songs/cover5.png",
+    "filepath": "./src/songs/song5.mp3"
   }
 ]
