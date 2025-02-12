@@ -239,7 +239,12 @@ function createSongItem(song) {
 
   songItem.append(playIconSpan, titleSpan, artistSpan, durationSpan, favSpan, deltree);
 
-  songItem.addEventListener('click', () => selectSong(song));
+  songItem.addEventListener('click', (e) => {
+    if (e.target.closest('.play-icon')) return;
+    selectSong(song);
+    playSong(song);
+  });
+
 
   playIconSpan.addEventListener('click', (e) => {
     selectSong(song);
@@ -331,15 +336,17 @@ function selectSong(song) {
 
 function togglePlayPause() {
   if (!currentSong) return;
-  const willPlay = !currentAudio || currentAudio.paused;
-  if (!currentAudio || currentAudio.src !== currentSong.filepath) {
+
+  if (!currentAudio) {
     playSong(currentSong);
-  } else if (willPlay) {
+  } else if (currentAudio.paused) {
     currentAudio.play();
+    isPlaying = true;
   } else {
     currentAudio.pause();
+    isPlaying = false;
   }
-  isPlaying = willPlay;
+
   updatePlayPauseButton(isPlaying);
 }
 
